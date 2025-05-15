@@ -1,12 +1,16 @@
 [package]
-name = "template-report"
+name = "typst-template"
 version = "0.1.0"
 entrypoint = "lib.typ"
-repository = "https://github.com/crd2333/template-report"
+repository = "https://github.com/Azeral0619/typst-template"
 authors = ["crd2333"]
 license = "MIT-0"
 description = "A report template."
-keywords = ["report", "ZJU", "Zhe Jiang University"]
+keywords = [
+    "report",
+    "NUAA",
+    "Nanjing University of Aeronautics and Astronautics",
+]
 categories = ["report"]
 disciplines = ["computer-science"]
 
