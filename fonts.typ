@@ -7,8 +7,8 @@
   思源黑体: "Noto Sans CJK SC",
   楷体: ("Arial", "LXGW WenKai"),
   ntl: "Microsoft New Tai Lue",
-  meslo: "MesloLGS NF",
-  meslo-mono: "MesloLGS Nerd Font Mono",
+  jetbrains: "JetBrains NF",
+  jetbrains-mono: "JetBrainsMono NFM",
   tnr: "Times New Roman",
 );
 
@@ -28,7 +28,7 @@
   六号: 7.5pt,
   小六: 6.5pt,
   七号: 5.5pt,
-  八号: 5pt
+  八号: 5pt,
 );
 
 // 汉字伪粗体，from https://discord.com/channels/1054443721975922748/1054443722592497796/1175967383630921848
