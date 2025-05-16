@@ -81,7 +81,7 @@
 ///
 /// 参数：
 /// - title: 标题
-/// - exp_title: 实验题目
+/// - subtitle: 实验题目
 /// - author: 作者
 /// - class_name: 班级
 /// - grade: 年级
@@ -97,7 +97,7 @@
 /// - args: 其他参数
 #let cover_report(
   title: "title",
-  exp_title: "exp_title",
+  subtitle: "subtitle",
   author: "author",
   class_name: "class_name",
   grade: "grade",
@@ -116,11 +116,11 @@
     #image("assets/NUAA.svg", width: 60%)
     #text(title, font: 字体.宋体, size: 字号.小一, weight: "bold")
     #v(0.5em) #if (report_type == cover_types.project or report_type == cover_types.thesis) {
-      text(exp_title, font: 字体.宋体, size: 字号.二号, weight: "bold")
+      text(subtitle, font: 字体.宋体, size: 字号.二号, weight: "bold")
     }
 
     #if (lang == "en") {
-      let title_item = (render_info_label("Project Name"), render_info_value(exp_title))
+      let title_item = (render_info_label("Project Name"), render_info_value(subtitle))
       let author_item = (render_info_label("Student Name"), render_info_value(author))
       let id_item = (render_info_label("Student ID"), render_info_value(student_id))
       let class_item = (render_info_label("Class"), render_info_value(class_name))
@@ -148,7 +148,7 @@
         ..info_items
       )
     } else {
-      let title_item = (render_info_label("实验题目"), render_info_value(exp_title))
+      let title_item = (render_info_label("实验题目"), render_info_value(subtitle))
       let author_item = (render_info_label("学生姓名"), render_info_value(author))
       let id_item = (render_info_label("学   号"), render_info_value(student_id))
       let class_item = (render_info_label("班   级"), render_info_value(class_name))
