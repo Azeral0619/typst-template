@@ -2,12 +2,13 @@
 #import "utils.typ": date_format
 
 /// 报告类型常量定义
-#let report_types = (
+#let cover_types = (
   standard: "1", // 标准报告格式
   academic: "2", // 学术报告格式
   tutorial: "3", // 教程报告格式
   project: "4", // 项目报告格式
   thesis: "5", // 论文格式
+  normal: "6", // 普通封面
 )
 
 #let render_info_label(content) = {
@@ -91,8 +92,8 @@
 /// - email: 邮箱
 /// - major: 专业
 /// - mentor: 导师
-/// - report_type: 报告类型，可用值：report_types.standard, report_types.academic,
-///   report_types.tutorial, report_types.project, report_types.thesis
+/// - report_type: 报告类型，可用值：cover_types.standard, cover_types.academic,
+///   cover_types.tutorial, cover_types.project, cover_types.thesis
 /// - args: 其他参数
 #let cover_report(
   title: "title",
@@ -107,14 +108,14 @@
   email: "email@default.com",
   major: "major",
   mentor: "mentor",
-  report_type: report_types.standard,
+  report_type: cover_types.standard,
   ..args,
 ) = {
   let formatted_date = date_format(date: date, lang: lang, size: 字号.三号)
   align(center + horizon)[
     #image("assets/NUAA.svg", width: 60%)
     #text(title, font: 字体.宋体, size: 字号.小一, weight: "bold")
-    #v(0.5em) #if (report_type == report_types.project or report_type == report_types.thesis) {
+    #v(0.5em) #if (report_type == cover_types.project or report_type == cover_types.thesis) {
       text(exp_title, font: 字体.宋体, size: 字号.二号, weight: "bold")
     }
 
@@ -129,15 +130,15 @@
       let email_item = (render_info_label("Email"), render_info_value(email))
       let mentor_item = (render_info_label("Mentor"), render_info_value(mentor))
       // 根据报告类型显示不同的信息项
-      let info_items = if report_type == report_types.standard {
+      let info_items = if report_type == cover_types.standard {
         (title_item + author_item + id_item + class_item + department_item + date_item)
-      } else if report_type == report_types.academic {
+      } else if report_type == cover_types.academic {
         (title_item + author_item + department_item + major_item + email_item + date_item)
-      } else if report_type == report_types.tutorial {
+      } else if report_type == cover_types.tutorial {
         (title_item + author_item + id_item + email_item + mentor_item + date_item)
-      } else if report_type == report_types.project {
+      } else if report_type == cover_types.project {
         (author_item + id_item + class_item + department_item + date_item)
-      } else if report_type == report_types.thesis {
+      } else if report_type == cover_types.thesis {
         (author_item + department_item + major_item + email_item + date_item)
       }
       grid(
@@ -157,15 +158,15 @@
       let email_item = (render_info_label("邮   箱"), render_info_value(email))
       let mentor_item = (render_info_label("指导教师"), render_info_value(mentor))
       // 根据报告类型显示不同的信息项
-      let info_items = if report_type == report_types.standard {
+      let info_items = if report_type == cover_types.standard {
         (title_item + author_item + id_item + class_item + department_item + date_item)
-      } else if report_type == report_types.academic {
+      } else if report_type == cover_types.academic {
         (title_item + author_item + department_item + major_item + email_item + date_item)
-      } else if report_type == report_types.tutorial {
+      } else if report_type == cover_types.tutorial {
         (title_item + author_item + id_item + email_item + mentor_item + date_item)
-      } else if report_type == report_types.project {
+      } else if report_type == cover_types.project {
         (author_item + id_item + class_item + department_item + date_item)
-      } else if report_type == report_types.thesis {
+      } else if report_type == cover_types.thesis {
         (author_item + department_item + major_item + email_item + date_item)
       }
       grid(
@@ -220,21 +221,12 @@
     return
   }
 
-  // 提取报告类型编号，默认为 "1"
-  let report_type = if infos.cover_style.match(regex("\d+")) != none {
-    infos.cover_style.match(regex("\d+")).text
-  } else {
-    report_types.standard
-  }
-
-  // 提取封面样式名称（去掉类型编号）
-  let cover_style = infos.cover_style.trim(report_type)
-
-  // 根据封面样式和显示设置选择合适的封面模板
-  if cover_style == "report" and infos.at("show_name", default: true) {
-    cover_report(report_type: report_type, ..infos) // 实验报告
-  } else if cover_style == "report" {
-    cover_anonymous_report(..infos) // 匿名实验报告
+  if infos.cover_style != cover_types.normal {
+    if infos.at("show_name", default: true) {
+      cover_report(report_type: infos.cover_style, ..infos) // 实验报告
+    } else {
+      cover_anonymous_report(..infos) // 匿名实验报告
+    }
   } else {
     cover_normal(..infos) // 普通封面
   }

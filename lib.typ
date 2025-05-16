@@ -1,6 +1,6 @@
 #import "fonts.typ": *
 #import "utils.typ": *
-#import "covers.typ": show_cover, report_types
+#import "covers.typ": show_cover, cover_types
 #import "figures.typ": *
 #import "math.typ": *
 
