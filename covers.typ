@@ -159,7 +159,7 @@
       let mentor_item = (render_info_label("指导教师"), render_info_value(mentor))
       // 根据报告类型显示不同的信息项
       let info_items = if report_type == cover_types.standard {
-        (title_item + author_item + id_item + class_item + department_item + date_item)
+        (title_item + author_item + id_item + department_item + date_item)
       } else if report_type == cover_types.academic {
         (title_item + author_item + department_item + major_item + email_item + date_item)
       } else if report_type == cover_types.tutorial {
