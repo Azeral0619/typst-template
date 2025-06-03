@@ -6,7 +6,7 @@
   third_title: "第三级标题",
   author: ("作者1", "作者2"),
   date: (2024, 5, 15), // 默认自动获取 datetime.today()
-  cover_style: report_types.standard, // report, report1-5... false 或 "" 表示无封面
+  cover_style: cover_types.standard, // report, report1-5... false 或 "" 表示无封面
   header_style: "simple", // "simple" 使用默认页眉，"full" 全页面页眉，"detailed" 详细页眉
   footer_style: "simple", // "simple" 使用默认页脚，"full" 全页面页脚
   show_toc: true, // 是否显示目录
